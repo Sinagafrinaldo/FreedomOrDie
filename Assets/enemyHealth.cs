@@ -8,13 +8,14 @@ public class enemyHealth : MonoBehaviour
     public float health;
     public float maxHealth;
     private EnemyHB _HB;
-
+    public int enemiesKilled;
 
     // public Image healthBar;  
     public void Start()
     {
         maxHealth = health;
         _HB = GetComponentInChildren<EnemyHB>();
+        enemiesKilled = 0;
     }
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class enemyHealth : MonoBehaviour
         // healthBar.fillAmount = Mathf.Clamp(health/maxHealth, 0, 1);
         if (health <= 0)
         {
+            enemiesKilled++;
             Destroy(gameObject);
         }
     }

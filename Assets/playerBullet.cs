@@ -7,7 +7,7 @@ public class playerBullet : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     public float timer;
-
+    SimpleFlash SF;
 
     void Start()
     {
@@ -15,6 +15,12 @@ public class playerBullet : MonoBehaviour
 
         // Mendapatkan arah hadapan karakter player
         Vector2 playerForward = transform.right;
+        GameObject enemy = GameObject.FindWithTag("Enemy");
+
+        if (enemy != null)
+        {
+            SF = enemy.GetComponent<SimpleFlash>();
+        }
 
         rb.velocity = playerForward * force;
 
@@ -26,7 +32,7 @@ public class playerBullet : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 1.6)
+        if (timer > 1.6f)
         {
             Destroy(gameObject);
         }
@@ -36,7 +42,10 @@ public class playerBullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            // health -= 5;
+            if (SF != null)
+            {
+                SF.Flash();
+            }
             Destroy(gameObject);
         }
     }

@@ -10,12 +10,27 @@ public class PlayerShooting : MonoBehaviour
     private float nextFire = 0f;
     public AudioSource audioSource;
     public AudioClip shootSound;
+    public bool CanShoot;
+
+    void Start()
+    {
+        CanShoot = false;
+    }
+
+    public void PointeDownShoot()
+    {
+        CanShoot = true;
+    }
+    public void PointerUpShoot()
+    {
+        CanShoot = false;
+    }
 
     void Update()
     {
         if (!PauseMenu.isPaused)
         {
-            if (Input.GetKey(KeyCode.F) && Time.time > nextFire)
+            if ((CanShoot || Input.GetKey(KeyCode.F)) && Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate;
                 Shoot();
