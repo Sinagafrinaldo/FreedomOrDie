@@ -100,7 +100,6 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Melakukan pergerakan patrol
-    // Melakukan pergerakan patrol
     void Patrol()
     {
         patrolTimer += Time.deltaTime;
@@ -125,4 +124,12 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            // Mengabaikan sentuhan dengan musuh
+            Physics2D.IgnoreCollision(other.collider, GetComponent<Collider2D>());
+        }
+    }
 }

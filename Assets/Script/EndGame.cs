@@ -47,15 +47,31 @@ public class EndGame : MonoBehaviour
             if (totalEnemiesKilled == 5 && totalTime < 20)
             {
                 star3.SetActive(true); // Dapatkan 3 bintang jika memenuhi kriteria
+                int currentStars = PlayerPrefs.GetInt("SaveStar", 0);
+                if (currentStars < 3)
+                {
+                    PlayerPrefs.SetInt("SaveStar", 3);
+                }
             }
             else if (totalEnemiesKilled == 5)
             {
                 star2.SetActive(true); // Dapatkan 2 bintang jika semua musuh terbunuh, tetapi waktu lebih dari 20 detik
+                int currentStars = PlayerPrefs.GetInt("SaveStar", 0);
+                if (currentStars < 2)
+                {
+                    PlayerPrefs.SetInt("SaveStar", 2);
+                }
             }
             else
             {
                 star1.SetActive(true); // Dapatkan 1 bintang jika ada musuh yang tidak terbunuh
+                int currentStars = PlayerPrefs.GetInt("SaveStar", 0);
+                if (currentStars < 1)
+                {
+                    PlayerPrefs.SetInt("SaveStar", 1);
+                }
             }
+
 
             // Mengatur teks pada inspector totalSkorText dengan totalEnemiesKilled
             totalSkorText.text = totalEnemiesKilled.ToString();

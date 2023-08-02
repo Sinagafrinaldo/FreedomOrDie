@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,27 +8,24 @@ public class Dialogue : MonoBehaviour
     public GameObject UIpanel;
     public Text dialogueText;
     public string[] dialogue;
-    public AudioClip[] dialogueAudio; // Array untuk menyimpan audio untuk setiap baris dialog
+    public AudioClip[] dialogueAudio;
     private int index;
     public float wordSpeed;
-    private bool playerIsClose;
     public GameObject contButton;
 
-    private bool hasInteracted; // Flag untuk menandai apakah dialog sudah ditampilkan
+    private bool hasInteracted;
 
     private AudioSource audioSource;
 
     private void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>(); // Menambahkan komponen AudioSource
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !hasInteracted) // Hanya berinteraksi jika belum ditampilkan sebelumnya
+        if (other.CompareTag("Player") && !hasInteracted)
         {
-
-            playerIsClose = true;
             dialoguePanel.SetActive(true);
             UIpanel.SetActive(false);
             StartCoroutine(Typing());
@@ -37,22 +33,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerIsClose = false;
-            if (!hasInteracted) // Jika belum ditampilkan sebelumnya, maka tutup panel
-                dialoguePanel.SetActive(false);
-            if (!hasInteracted) // Jika belum ditampilkan sebelumnya, maka tutup panel
-                UIpanel.SetActive(true);
-
-        }
-    }
-
     IEnumerator Typing()
     {
-        dialogueText.text = ""; // Reset teks dialog
+        dialogueText.text = "";
         foreach (char letter in dialogue[index].ToCharArray())
         {
             dialogueText.text += letter;
@@ -60,15 +43,13 @@ public class Dialogue : MonoBehaviour
         }
         contButton.SetActive(true);
 
-        // Memeriksa apakah ada audio untuk baris dialog saat ini
         if (dialogueAudio.Length > index && dialogueAudio[index] != null)
         {
             audioSource.clip = dialogueAudio[index];
             audioSource.Play();
         }
 
-        hasInteracted = true; // Menandai bahwa dialog sudah ditampilkan
-
+        hasInteracted = true;
     }
 
     public void NextLine()
@@ -83,8 +64,30 @@ public class Dialogue : MonoBehaviour
         else
         {
             dialoguePanel.SetActive(false);
-            hasInteracted = false; // Reset flag interaksi
-            gameObject.SetActive(false); // Menonaktifkan objek setelah dialog selesai
+            hasInteracted = false;
+            gameObject.SetActive(false);
+
+            // Jika ini adalah trigger pertama
+            if (gameObject.CompareTag("FirstTrigger"))
+            {
+                // Aktifkan kembali UI panel trigger pertama
+                UIpanel.SetActive(true);
+
+                // Nonaktifkan trigger pertama agar tidak bisa dipicu lagi
+                gameObject.SetActive(false);
+            }
+
+            // Jika ini adalah trigger kedua
+            if (gameObject.CompareTag("SecondTrigger"))
+            {
+                // Cari objek trigger pertama berdasarkan tag
+                GameObject firstTrigger = GameObject.FindGameObjectWithTag("FirstTrigger");
+
+                // Aktifkan kembali trigger pertama
+                if (firstTrigger != null)
+                    firstTrigger.SetActive(true);
+            }
+
             Time.timeScale = 1f;
             PlayerMovement.MoveRight = false;
             PlayerMovement.MoveLeft = false;

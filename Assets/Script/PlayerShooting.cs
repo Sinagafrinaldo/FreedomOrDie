@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     public GameObject bullet;
+    public GameObject bulletEffect;
     public Transform bulletPos;
-    public float fireRate = 0.15f;
+    public Transform effectPos; // Posisi baru untuk efek partikel
+    public float fireRate = 0.2f;
     private float nextFire = 0f;
     public AudioSource audioSource;
     public AudioClip shootSound;
@@ -21,6 +23,7 @@ public class PlayerShooting : MonoBehaviour
     {
         CanShoot = true;
     }
+
     public void PointerUpShoot()
     {
         CanShoot = false;
@@ -40,9 +43,16 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bullet, bulletPos.position, bulletPos.rotation);
-
         // Memainkan suara tembakan
         audioSource.PlayOneShot(shootSound);
+
+        // Menampilkan efek partikel pada posisi effectPos
+        GameObject effect = Instantiate(bulletEffect, effectPos.position, effectPos.rotation);
+
+        // Menghancurkan efek partikel setelah 0.1 detik
+        Destroy(effect, 0.1f);
+
+        // Membuat peluru yang keluar dari bulletPos
+        Instantiate(bullet, bulletPos.position, bulletPos.rotation);
     }
 }

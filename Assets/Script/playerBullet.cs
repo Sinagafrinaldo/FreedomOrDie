@@ -47,6 +47,8 @@ public class playerBullet : MonoBehaviour
                 SF.Flash();
             }
             Destroy(gameObject);
+        }else if (other.gameObject.CompareTag("Ground") ){
+            Destroy(gameObject);
         }
     }
 }

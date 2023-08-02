@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D Rb;
-    public static float ms = 5;
+    public static float ms = 6;
     public float jf = 800;
     private bool isJumping = false;
-    private bool isFalling = false; // Menandai apakah karakter sedang jatuh
+    // private bool isFalling = false; // Menandai apakah karakter sedang jatuh
     private int lastDirection = 1;
 
     public SpriteRenderer SpriteRenderer;
@@ -122,12 +122,12 @@ public class PlayerMovement : MonoBehaviour
             // Menambahkan relasi animasi "falling"
             if (Rb.velocity.y < -0.1f)
             {
-                isFalling = true;
+                // isFalling = true;
                 myAnimator.SetBool("isFalling", true);
             }
             else
             {
-                isFalling = false;
+                // isFalling = false;
                 myAnimator.SetBool("isFalling", false);
             }
 

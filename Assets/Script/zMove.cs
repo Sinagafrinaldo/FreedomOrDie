@@ -7,7 +7,7 @@ public class zMove : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
-    private bool isJumping = false;
+    // private bool isJumping = false;
     private bool isGrounded = false;
     private Rigidbody2D rb;
 
@@ -41,7 +41,7 @@ public class zMove : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            isJumping = true;
+            // isJumping = true;
         }
     }
 
@@ -50,7 +50,7 @@ public class zMove : MonoBehaviour
         // Memeriksa jika karakter menyentuh tanah
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isJumping = false;
+            // isJumping = false;
         }
     }
 }
