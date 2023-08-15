@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused;
     public GameObject pauseMenu;
+    public string nextLevelSceneName; // Nama scene berikutnya
 
     void Start()
     {
@@ -47,12 +48,19 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         isPaused = false;
+        enemyHealth.enemiesKilled = 0;
+    }
+
+    public void LoadNextLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(nextLevelSceneName);
+        isPaused = false;
     }
 
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
-
     }
 }

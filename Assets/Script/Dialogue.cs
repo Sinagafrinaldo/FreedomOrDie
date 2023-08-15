@@ -20,6 +20,7 @@ public class Dialogue : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
+        contButton.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

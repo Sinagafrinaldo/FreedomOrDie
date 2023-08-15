@@ -32,7 +32,7 @@ public class playerBullet : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 1.6f)
+        if (timer > 1f)
         {
             Destroy(gameObject);
         }
@@ -47,7 +47,9 @@ public class playerBullet : MonoBehaviour
                 SF.Flash();
             }
             Destroy(gameObject);
-        }else if (other.gameObject.CompareTag("Ground") ){
+        }
+        else if (other.gameObject.CompareTag("Ground"))
+        {
             Destroy(gameObject);
         }
     }

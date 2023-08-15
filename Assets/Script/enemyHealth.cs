@@ -8,7 +8,7 @@ public class enemyHealth : MonoBehaviour
     public float health;
     public float maxHealth;
     private EnemyHB _HB;
-    public int enemiesKilled;
+    public static int enemiesKilled = 0;
 
     public void Start()
     {
@@ -21,7 +21,6 @@ public class enemyHealth : MonoBehaviour
             _HB = gameObject.AddComponent<EnemyHB>();
         }
 
-        enemiesKilled = 0;
     }
 
     public void Update()

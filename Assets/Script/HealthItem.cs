@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HealthItem : MonoBehaviour
 {
-    public float healthAmount = 20f; // Jumlah kesehatan yang ditambahkan saat berinteraksi
-    public float maxHealth = 50f; // Batas maksimal kesehatan
+    public float healthAmount = 40f; // Jumlah kesehatan yang ditambahkan saat berinteraksi
+    public float maxHealth = 100f; // Batas maksimal kesehatan
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,7 +19,7 @@ public class HealthItem : MonoBehaviour
 
                 if (newHealth > maxHealth)
                 {
-                    player.health = 50f; // Tetapkan kesehatan ke batas maksimal jika melebihi
+                    player.health = 100f; // Tetapkan kesehatan ke batas maksimal jika melebihi
                 }
                 else
                 {

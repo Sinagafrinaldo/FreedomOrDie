@@ -35,13 +35,10 @@ public class EndGame : MonoBehaviour
 
             totalTimeText.text = timer.timeText.text; // Menampilkan total waktu di UI end game
 
-            int totalEnemiesKilled = 0;
+            int totalEnemiesKilled = enemyHealth.enemiesKilled;
 
             // Menjumlahkan total enemiesKilled dari semua enemyHealth yang ada
-            foreach (enemyHealth enemyHealth in enemyHealths)
-            {
-                totalEnemiesKilled += enemyHealth.enemiesKilled;
-            }
+
 
             // Periksa apakah semua musuh terbunuh dan waktu kurang dari 20 detik
             if (totalEnemiesKilled == 5 && totalTime < 20)
@@ -75,6 +72,7 @@ public class EndGame : MonoBehaviour
 
             // Mengatur teks pada inspector totalSkorText dengan totalEnemiesKilled
             totalSkorText.text = totalEnemiesKilled.ToString();
+            enemyHealth.enemiesKilled = 0;
         }
     }
 }
