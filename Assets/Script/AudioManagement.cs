@@ -4,21 +4,43 @@ using UnityEngine;
 
 public class AudioManagement : MonoBehaviour
 {
+    public AudioSource musicAudioSource; // Drag your AudioSource component to this field in the inspector
+    private int prefsMusic;
+
     // Start is called before the first frame update
-    public AudioSource audioSrc;
-    private float musicVolume = 1f;
     void Start()
     {
-        audioSrc = GetComponent<AudioSource>();
+        if (!PlayerPrefs.HasKey("StateMusic"))
+        {
+            PlayerPrefs.SetInt("StateMusic", 1);
+        }
+        prefsMusic = PlayerPrefs.GetInt("StateMusic");
+        PlayMusic(prefsMusic);
     }
 
     // Update is called once per frame
     void Update()
     {
-        audioSrc.volume = musicVolume;
-        
+        int currentPrefsMusic = PlayerPrefs.GetInt("StateMusic");
+        if (currentPrefsMusic != prefsMusic)
+        {
+            prefsMusic = currentPrefsMusic;
+            PlayMusic(prefsMusic);
+        }
+        // Your other update logic here
     }
-    public void setVolume (float vol){
-        musicVolume = vol;
+
+    public void PlayMusic(int state)
+    {
+        if (state == 1)
+        {
+            musicAudioSource.Play(); // Play the music
+        }
+        else
+        {
+            musicAudioSource.Stop(); // Stop the music
+        }
     }
+
+    
 }

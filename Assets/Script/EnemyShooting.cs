@@ -50,7 +50,12 @@ public class EnemyShooting : MonoBehaviour
     void shoot()
     {
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
-        audioSource.Play();
+        int currentPrefsMusic = PlayerPrefs.GetInt("StateSfx");
+        if (currentPrefsMusic == 1)
+        {
+            audioSource.Play();
+        }
+        
     }
 
     float GetNextShootTime()

@@ -20,12 +20,11 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -48,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -64,7 +63,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -93,6 +91,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1146,57 +1168,58 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprites 1_0: 1025737130
-      Sprites 1_1: -124447130
-      Sprites 1_10: -251967476
-      Sprites 1_11: -794718370
-      Sprites 1_12: 826545177
-      Sprites 1_13: -1178402589
-      Sprites 1_14: 1164431846
-      Sprites 1_15: 635418453
-      Sprites 1_16: -1445050709
-      Sprites 1_17: -1725065733
-      Sprites 1_18: 256420335
-      Sprites 1_19: 942691879
-      Sprites 1_2: 329677982
-      Sprites 1_20: -1497087871
-      Sprites 1_21: -96735337
-      Sprites 1_22: -1336576172
-      Sprites 1_23: 1771824958
-      Sprites 1_24: -1363908436
-      Sprites 1_25: -1233571204
-      Sprites 1_26: -2135809578
-      Sprites 1_27: 659867982
-      Sprites 1_28: -1155689023
       Sprites 1_29: 1394744299
-      Sprites 1_3: 34577276
-      Sprites 1_30: -852208248
-      Sprites 1_31: 1719866791
-      Sprites 1_32: 1896648208
-      Sprites 1_33: -439034692
-      Sprites 1_34: -1773045372
-      Sprites 1_35: -1559085831
-      Sprites 1_36: 36370542
-      Sprites 1_37: 1927194061
-      Sprites 1_38: 675164634
-      Sprites 1_39: -304295260
-      Sprites 1_4: -1384931006
-      Sprites 1_40: -1203216882
-      Sprites 1_41: 684999208
-      Sprites 1_42: 766075304
-      Sprites 1_43: -354563462
       Sprites 1_44: -1106094374
-      Sprites 1_45: -407758694
-      Sprites 1_46: -975968310
-      Sprites 1_47: -375848600
       Sprites 1_48: -1716098351
+      Sprites 1_11: -794718370
+      Sprites 1_30: -852208248
+      Sprites 1_23: 1771824958
+      Sprites 1_39: -304295260
+      Sprites 1_45: -407758694
       Sprites 1_5: 100760693
-      Sprites 1_6: 806657071
-      Sprites 1_7: -1999488287
-      Sprites 1_8: -82958106
       Sprites 1_9: 7336307
-  mipmapLimitGroupName: 
+      Sprites 1_13: -1178402589
+      Sprites 1_15: 635418453
+      Sprites 1_20: -1497087871
+      Sprites 1_32: 1896648208
+      Sprites 1_10: -251967476
+      Sprites 1_27: 659867982
+      Sprites 1_0: 1025737130
+      Sprites 1_22: -1336576172
+      Sprites 1_19: 942691879
+      Sprites 1_14: 1164431846
+      Sprites 1_25: -1233571204
+      Sprites 1_17: -1725065733
+      Sprites 1_21: -96735337
+      Sprites 1_47: -375848600
+      Sprites 1_34: -1773045372
+      Sprites 1_37: 1927194061
+      Sprites 1_1: -124447130
+      Sprites 1_18: 256420335
+      Sprites 1_31: 1719866791
+      Sprites 1_8: -82958106
+      Sprites 1_40: -1203216882
+      Sprites 1_3: 34577276
+      Sprites 1_28: -1155689023
+      Sprites 1_43: -354563462
+      Sprites 1_12: 826545177
+      Sprites 1_38: 675164634
+      Sprites 1_41: 684999208
+      Sprites 1_2: 329677982
+      Sprites 1_35: -1559085831
+      Sprites 1_46: -975968310
+      Sprites 1_7: -1999488287
+      Sprites 1_42: 766075304
+      Sprites 1_24: -1363908436
+      Sprites 1_26: -2135809578
+      Sprites 1_33: -439034692
+      Sprites 1_36: 36370542
+      Sprites 1_16: -1445050709
+      Sprites 1_4: -1384931006
+      Sprites 1_6: 806657071
+  spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

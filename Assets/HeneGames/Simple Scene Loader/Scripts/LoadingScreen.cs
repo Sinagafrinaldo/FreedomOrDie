@@ -67,7 +67,7 @@ namespace HeneGames.Sceneloader
 
             while (!_opearation.isDone)
             {
-                float _progress = Mathf.Clamp01(_opearation.progress / 0.9f);
+                float _progress = Mathf.Clamp01(_opearation.progress / 0.99f);
                 float _prosentProgress = _progress * 100f;
                 loadingFillImage.fillAmount = _progress;
                 loadingText.text = _prosentProgress.ToString("F0") + "%";
