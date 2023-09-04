@@ -15,12 +15,18 @@ public class EndGame : MonoBehaviour
     public GameObject star1;
     public GameObject star2;
     public GameObject star3;
+    public GameObject ButtonUI, TimerUI, PauseUI, ScoreUI;
 
     private enemyHealth[] enemyHealths; // Array untuk menyimpan referensi ke skrip enemyHealth
 
+    public int maxStarKill;
+    public int maxStarTime;
+    public int rentangMin;
+
+
     private void Start()
     {
-        // Mendapatkan semua komponen enemyHealth yang ada di dalam scene
+       
         enemyHealths = FindObjectsOfType<enemyHealth>();
     }
 
@@ -28,32 +34,45 @@ public class EndGame : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+             int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+             if (activeSceneIndex == 12){
+                activeSceneIndex = 0;
+             }
+            if (!PlayerPrefs.HasKey("LastLevel"))
+            {
+                PlayerPrefs.SetInt("LastLevel", 1);
+            }else{
+                PlayerPrefs.SetInt("LastLevel", activeSceneIndex+1);
+            }
             totalTime = timer.timeRemaining;
 
             endGamePanel.SetActive(true);
             Time.timeScale = 0f;
             PauseMenu.isPaused = true;
 
-            totalTimeText.text = timer.timeText.text; // Menampilkan total waktu di UI end game
+            totalTimeText.text = timer.timeText.text;
 
             int totalEnemiesKilled = enemyHealth.enemiesKilled;
 
-            // Menjumlahkan total enemiesKilled dari semua enemyHealth yang ada
+           
+            ButtonUI.SetActive(false);
+            TimerUI.SetActive(false);
+            PauseUI.SetActive(false);
+            ScoreUI.SetActive(false);
 
-
-            // Periksa apakah semua musuh terbunuh dan waktu kurang dari 20 detik
-            if (totalEnemiesKilled == 5 && totalTime < 20)
+         
+            if (totalEnemiesKilled >= maxStarKill && totalTime <= maxStarTime)
             {
-                star3.SetActive(true); // Dapatkan 3 bintang jika memenuhi kriteria
+                star3.SetActive(true);
                 int currentStars = PlayerPrefs.GetInt("SaveStar" + SceneManager.GetActiveScene().buildIndex, 0);
                 if (currentStars < 3)
                 {
                     PlayerPrefs.SetInt("SaveStar" + SceneManager.GetActiveScene().buildIndex, 3);
                 }
             }
-            else if (totalEnemiesKilled == 5)
+            else if (totalEnemiesKilled >= rentangMin && totalEnemiesKilled<=maxStarKill )
             {
-                star2.SetActive(true); // Dapatkan 2 bintang jika semua musuh terbunuh, tetapi waktu lebih dari 20 detik
+                star2.SetActive(true); 
                 int currentStars = PlayerPrefs.GetInt("SaveStar" + SceneManager.GetActiveScene().buildIndex, 0);
                 if (currentStars < 2)
                 {
@@ -62,7 +81,7 @@ public class EndGame : MonoBehaviour
             }
             else
             {
-                star1.SetActive(true); // Dapatkan 1 bintang jika ada musuh yang tidak terbunuh
+                star1.SetActive(true); 
                 int currentStars = PlayerPrefs.GetInt("SaveStar" + SceneManager.GetActiveScene().buildIndex, 0);
                 if (currentStars < 1)
                 {
@@ -70,7 +89,7 @@ public class EndGame : MonoBehaviour
                 }
             }
 
-            // Mengatur teks pada inspector totalSkorText dengan totalEnemiesKilled
+           
             totalSkorText.text = totalEnemiesKilled.ToString();
             enemyHealth.enemiesKilled = 0;
         }

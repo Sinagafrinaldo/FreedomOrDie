@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
+ 
     public float Hp;
     public float maxHp = 5;
     void Start()
@@ -12,7 +12,6 @@ public class EnemyBehaviour : MonoBehaviour
         Hp = maxHp;
     }
 
-    // Update is called once per frame
     public void TakeHit (float damage){
         Hp -= damage;
         if (Hp <=0){

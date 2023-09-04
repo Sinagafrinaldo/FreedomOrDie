@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    public playerHealth pHealth; // Pastikan ini sudah sesuai dengan nama komponen
+    public playerHealth pHealth; 
     public float damage = 5;
 
-    private bool alreadyDamaged = false; // Tandai apakah pemain sudah terkena damage dalam satu frame
+    private bool alreadyDamaged = false; // damage dalam satu frame
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class Damage : MonoBehaviour
         {
             pHealth.health -= damage;
             other.gameObject.GetComponent<playerHealth>().health -= damage;
-            alreadyDamaged = true; // Setel alreadyDamaged menjadi true untuk mencegah damage berulang dalam satu frame
+            alreadyDamaged = true; 
         }
     }
 
@@ -33,7 +33,7 @@ public class Damage : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            alreadyDamaged = false; // Setel alreadyDamaged menjadi false ketika pemain meninggalkan collider spike
+            alreadyDamaged = false; 
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioManagement : MonoBehaviour
 {
-    public AudioSource musicAudioSource; // Drag your AudioSource component to this field in the inspector
+    public AudioSource musicAudioSource;
     private int prefsMusic;
 
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class AudioManagement : MonoBehaviour
             prefsMusic = currentPrefsMusic;
             PlayMusic(prefsMusic);
         }
-        // Your other update logic here
+        
     }
 
     public void PlayMusic(int state)

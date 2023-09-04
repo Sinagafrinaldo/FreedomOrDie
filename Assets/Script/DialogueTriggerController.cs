@@ -8,7 +8,7 @@ public class DialogueTriggerController : MonoBehaviour
 
     private void Start()
     {
-        // Sembunyikan UI panel trigger kedua secara awal
+
         if (isSecondTrigger)
         {
             UIpanel.SetActive(false);

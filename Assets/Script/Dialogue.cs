@@ -10,7 +10,8 @@ public class Dialogue : MonoBehaviour
     public string[] dialogue;
     public AudioClip[] dialogueAudio;
     private int index;
-    public float wordSpeed;
+    public float wordSpeed = 0.1f;
+
     public GameObject contButton;
 
     private bool hasInteracted;
@@ -29,6 +30,14 @@ public class Dialogue : MonoBehaviour
         {
             dialoguePanel.SetActive(true);
             UIpanel.SetActive(false);
+
+            // Memeriksa apakah ada audio yang tersedia dan belum diputar
+            if (dialogueAudio.Length > index && dialogueAudio[index] != null)
+            {
+                audioSource.clip = dialogueAudio[index];
+                audioSource.Play();
+            }
+
             StartCoroutine(Typing());
             Time.timeScale = 0f;
         }
@@ -44,12 +53,6 @@ public class Dialogue : MonoBehaviour
         }
         contButton.SetActive(true);
 
-        if (dialogueAudio.Length > index && dialogueAudio[index] != null)
-        {
-            audioSource.clip = dialogueAudio[index];
-            audioSource.Play();
-        }
-
         hasInteracted = true;
     }
 
@@ -60,6 +63,14 @@ public class Dialogue : MonoBehaviour
         if (index < dialogue.Length - 1)
         {
             index++;
+
+            // Memeriksa apakah ada audio yang tersedia dan belum diputar
+            if (dialogueAudio.Length > index && dialogueAudio[index] != null)
+            {
+                audioSource.clip = dialogueAudio[index];
+                audioSource.Play();
+            }
+
             StartCoroutine(Typing());
         }
         else
@@ -68,23 +79,16 @@ public class Dialogue : MonoBehaviour
             hasInteracted = false;
             gameObject.SetActive(false);
 
-            // Jika ini adalah trigger pertama
             if (gameObject.CompareTag("FirstTrigger"))
             {
-                // Aktifkan kembali UI panel trigger pertama
                 UIpanel.SetActive(true);
-
-                // Nonaktifkan trigger pertama agar tidak bisa dipicu lagi
                 gameObject.SetActive(false);
             }
 
-            // Jika ini adalah trigger kedua
             if (gameObject.CompareTag("SecondTrigger"))
             {
-                // Cari objek trigger pertama berdasarkan tag
                 GameObject firstTrigger = GameObject.FindGameObjectWithTag("FirstTrigger");
 
-                // Aktifkan kembali trigger pertama
                 if (firstTrigger != null)
                     firstTrigger.SetActive(true);
             }

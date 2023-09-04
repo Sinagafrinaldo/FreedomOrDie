@@ -52,8 +52,6 @@ public class PlayerShooting : MonoBehaviour
         }
         
 
-        // Menampilkan efek partikel pada posisi effectPos
-        // Menampilkan efek partikel pada posisi effectPos dengan penyesuaian pada nilai 
         if (GetComponent<PlayerMovement>().myAnimator.GetBool("isCrouch")) // Jika karakter sedang crouch
         {
             // Mengubah posisi peluru sedikit lebih rendah

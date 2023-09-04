@@ -112,7 +112,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1650954667
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -634907786, guid: f41ebcdb49dc21347b1d4a3a03490e55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   Collider: {fileID: 0}
   Standingsize: {x: 1.590622, y: 2.771343}
   Crouchingsize: {x: 1.590622, y: 1.996205}
+  myAnimator: {fileID: 0}
 --- !u!50 &5483704177388673676
 Rigidbody2D:
   serializedVersion: 4
@@ -202,8 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffceb4eb6ad6174389518de6a8dd6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  maxHealth: 50
+  health: 100
+  maxHealth: 100
   healthBar: {fileID: 0}
   animator: {fileID: 0}
   Collider: {fileID: 0}
@@ -229,6 +230,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5483704177388673783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,8 +249,9 @@ MonoBehaviour:
   effectPos: {fileID: 5483704176797935494}
   fireRate: 0.15
   audioSource: {fileID: 5483704177715857449}
-  shootSound: {fileID: 8300000, guid: f19e3fdb9c8082647a2c32beca28ba84, type: 3}
+  shootSound: {fileID: 8300000, guid: 8b76cff51a7d7e844b0adf5da4371ec6, type: 3}
   CanShoot: 0
+  effect: {fileID: 0}
 --- !u!1 &5483704177715857448
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +296,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.354
   m_Pitch: 1
   Loop: 0
   Mute: 0
