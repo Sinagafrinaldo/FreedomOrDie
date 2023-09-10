@@ -12,6 +12,8 @@ TagManager:
   - House
   - SecondTrigger
   - FirstTrigger
+  - HealthItem
+  - EndFlag
   layers:
   - Default
   - TransparentFX

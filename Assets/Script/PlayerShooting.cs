@@ -7,11 +7,13 @@ public class PlayerShooting : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletEffect;
     public Transform bulletPos;
-    public Transform effectPos; // Posisi baru untuk efek partikel
+    public Transform effectPos; 
     public float fireRate = 0.2f;
     private float nextFire = 0f;
     public AudioSource audioSource;
     public AudioClip shootSound;
+    public AudioClip pickSound;
+
     public bool CanShoot;
     public GameObject effect;
 
@@ -51,7 +53,6 @@ public class PlayerShooting : MonoBehaviour
             audioSource.PlayOneShot(shootSound);
         }
         
-
         if (GetComponent<PlayerMovement>().myAnimator.GetBool("isCrouch")) // Jika karakter sedang crouch
         {
             // Mengubah posisi peluru sedikit lebih rendah
@@ -59,8 +60,6 @@ public class PlayerShooting : MonoBehaviour
         }else{
             effect = Instantiate(bulletEffect, new Vector3(effectPos.position.x, effectPos.position.y , effectPos.position.z), effectPos.rotation);
         }
-
-
 
         // Menghancurkan efek partikel setelah 0.1 detik
         Destroy(effect, 0.1f);
@@ -70,11 +69,32 @@ public class PlayerShooting : MonoBehaviour
 
         if (GetComponent<PlayerMovement>().myAnimator.GetBool("isCrouch")) // Jika karakter sedang crouch
         {
-            // Mengubah posisi peluru sedikit lebih rendah
-            bulletPosition.y -= 0.3f; // Sesuaikan angka sesuai kebutuhan
+            bulletPosition.y -= 0.3f; 
         }
-
-        // Membuat peluru yang keluar dari bulletPosition yang telah diubah
         Instantiate(bullet, bulletPosition, bulletPos.rotation);
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("HealthItem")) 
+        {
+          
+
+
+        if (!PlayerPrefs.HasKey("StateSfx"))
+        {
+            PlayerPrefs.SetInt("StateSfx", 1);
+        }
+
+        int statesFx = PlayerPrefs.GetInt("StateSfx");
+
+        if (statesFx == 1){
+            audioSource.PlayOneShot(pickSound);
+        }
+
+
+
+        }
+    }
 }
+
+

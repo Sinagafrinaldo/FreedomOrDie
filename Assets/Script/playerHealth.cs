@@ -15,6 +15,8 @@ public class playerHealth : MonoBehaviour
     public BoxCollider2D Collider;
     public Vector2 Deadsize;
     private float timeScaleDelay = 1.1f; // Waktu penundaan sebelum mengubah Time.timeScale menjadi 0
+ public AudioSource audioSource2;
+    public AudioClip dieSound;
 
     public GameObject gameOverUI; // Objek Game Over
 
@@ -55,9 +57,15 @@ public class playerHealth : MonoBehaviour
         StartCoroutine(DelayTimeScaleChange());
 
         // Mengaktifkan objek Game Over
+        int currentPrefsMusic = PlayerPrefs.GetInt("StateSfx");
+        if (currentPrefsMusic == 1)
+        {
+            audioSource2.PlayOneShot(dieSound);
+        }
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
+
         }
     }
 

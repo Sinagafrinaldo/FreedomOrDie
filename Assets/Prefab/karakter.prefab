@@ -143,6 +143,8 @@ MonoBehaviour:
   Collider: {fileID: 0}
   Standingsize: {x: 1.590622, y: 2.771343}
   Crouchingsize: {x: 1.590622, y: 1.996205}
+  audioSource3: {fileID: 5483704177715857449}
+  completedSfx: {fileID: 8300000, guid: d19dab4a6839ae649b0f821ac252fa33, type: 3}
   myAnimator: {fileID: 0}
 --- !u!50 &5483704177388673676
 Rigidbody2D:
@@ -209,6 +211,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   Collider: {fileID: 0}
   Deadsize: {x: 0.89, y: 1.016404}
+  audioSource2: {fileID: 5483704177715857449}
+  dieSound: {fileID: 8300000, guid: 6193d9a716ca9bc49b28ce23fb8750b5, type: 3}
   gameOverUI: {fileID: 0}
 --- !u!95 &5483704177388673782
 Animator:
@@ -250,6 +254,7 @@ MonoBehaviour:
   fireRate: 0.15
   audioSource: {fileID: 5483704177715857449}
   shootSound: {fileID: 8300000, guid: 8b76cff51a7d7e844b0adf5da4371ec6, type: 3}
+  pickSound: {fileID: 8300000, guid: 6f65bfe817d0bb14eaa4a87c69220f27, type: 3}
   CanShoot: 0
   effect: {fileID: 0}
 --- !u!1 &5483704177715857448

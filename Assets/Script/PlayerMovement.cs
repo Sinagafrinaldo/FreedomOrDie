@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public static float ms = 6;
     public float jf = 800;
     private bool isJumping = false;
-    // private bool isFalling = false; // Menandai apakah karakter sedang jatuh
     private int lastDirection = 1;
 
     public SpriteRenderer SpriteRenderer;
@@ -23,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private bool MoveJump;
     private bool MoveCrouch;
 
+     public AudioSource audioSource3;
+    public AudioClip completedSfx;
 
 
     public Animator myAnimator;
@@ -176,6 +177,28 @@ public class PlayerMovement : MonoBehaviour
         {
             // Mengabaikan sentuhan dengan musuh
             Physics2D.IgnoreCollision(other.collider, Collider);
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other) {
+         if (other.CompareTag("EndFlag")) 
+        {
+          
+
+
+        if (!PlayerPrefs.HasKey("StateSfx"))
+        {
+            PlayerPrefs.SetInt("StateSfx", 1);
+        }
+
+        int statesFx = PlayerPrefs.GetInt("StateSfx");
+
+        if (statesFx == 1){
+            audioSource3.PlayOneShot(completedSfx);
+        }
+
+
+
         }
     }
 }

@@ -46,14 +46,29 @@ public class Dialogue : MonoBehaviour
     IEnumerator Typing()
     {
         dialogueText.text = "";
+        bool fullTextDisplayed = false; // Apakah seluruh teks sudah ditampilkan
+
         foreach (char letter in dialogue[index].ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
-        }
-        contButton.SetActive(true);
 
+            if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+            {
+                fullTextDisplayed = true;
+                dialogueText.text = dialogue[index]; // Tampilkan seluruh teks
+                break;
+            }
+        }
+
+        contButton.SetActive(true);
         hasInteracted = true;
+
+        // Tampilkan seluruh teks jika belum ditampilkan
+        if (!fullTextDisplayed)
+        {
+            dialogueText.text = dialogue[index];
+        }
     }
 
     public void NextLine()
