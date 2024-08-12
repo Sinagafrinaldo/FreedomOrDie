@@ -21,6 +21,7 @@ public class AudioManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         int currentPrefsMusic = PlayerPrefs.GetInt("StateMusic");
         if (currentPrefsMusic != prefsMusic)
         {
